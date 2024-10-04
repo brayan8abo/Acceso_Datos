@@ -24,6 +24,15 @@ import java.io.File;
             }
 
 
+            //COPIAR FICHEROS
+
+
+            FileManager fileManager = new FileManager();
+            fileManager.copiaFicheros("brayan.txt", "brayan_copia.txt");
+
+
+
+
         }
     }
 
