@@ -25,18 +25,21 @@ public class FileManager {
             FileOutputStream fos = new FileOutputStream(archivoDestino); //el que envia los datos
             FileInputStream fis = new FileInputStream(archivoOrigen); // el que recibe los datos
 
-            byte[] byteLeidos = fis.readAllBytes(); //Leer todos los bytes del fichero origen
-            fos.write(byteLeidos); //Escribir los bytes leidos al fichero destino
+//            byte[] byteLeidos = fis.readAllBytes(); //Leer todos los bytes del fichero origen
+//            fos.write(byteLeidos); //Escribir los bytes leidos al fichero destino
+
 
             fis.close();
             fos.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (
+                FileNotFoundException e) {
             // Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace();
             return false;
 
-        } catch (IOException e) {
+        } catch (
+                IOException e) {
             // Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             e.printStackTrace(); // me imprime el volcado de pila, LOS ERRORES QUE SE PUEDEN ESTAR PRODUCIENDO EN EL CODIDO
             return false;
