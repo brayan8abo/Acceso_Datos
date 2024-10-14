@@ -18,11 +18,10 @@ public class FileManager {
         if (fileManager.copiaFichero(nombreArchivo, nombreCopia)) {
             File f = new File(nombreCopia);
 
-            System.out.println("El fichero ha sido copiado en la ruta :"+f.getAbsolutePath());
+            System.out.println("El fichero ha sido copiado en la ruta :" + f.getAbsolutePath());
             System.out.println();
 
-        }
-        else {
+        } else {
             System.out.println("El fichero no se ha podido copiar");
         }
 
@@ -34,10 +33,9 @@ public class FileManager {
 
         if (copia != null) {
             System.out.println("COPIA REALIZADA CON EXITO CON EL SEGUNDO METODO DE COPIAR");
-            System.out.println("El fichero ha sido copiado en la ruta :"+copia);
-        }
-        else {
-            System.out.println("El fichero "+nombreArchivo+" no se ha podido copiar");
+            System.out.println("El fichero ha sido copiado en la ruta :" + copia);
+        } else {
+            System.out.println("El fichero " + nombreArchivo + " no se ha podido copiar");
         }
 
         //COPIAR PARCIAL
@@ -47,14 +45,16 @@ public class FileManager {
             System.out.println("El fichero ha sido copiado COrrectamente");
         }
 
-        FileManagerCaracteres.escribeMensajeFichero("salida.txt","ESTOY ESCRIBIENDO UN FICHERO\nESTA ES LA SEGUNDA LIENA");
-        
+        FileManagerCaracteres.escribeMensajeFichero("salida.txt", "ESTOY ESCRIBIENDO UN FICHERO\nESTA ES LA SEGUNDA LIENA");
+
     }
+
     /**
-     *  Copia un fichero
-     *  @param rutaOrigen Ruta del fichero origen
-     *  @param rutaDestino Ruta del fichero_destino
-     *  @return <true> si se ha copiado, <false> si no
+     * Copia un fichero
+     *
+     * @param rutaOrigen  Ruta del fichero origen
+     * @param rutaDestino Ruta del fichero_destino
+     * @return <true> si se ha copiado, <false> si no
      */
     public boolean copiaFichero(String rutaOrigen, String rutaDestino) {
 
@@ -65,7 +65,7 @@ public class FileManager {
             FileInputStream fis = new FileInputStream(ficheroOrigen);
             FileOutputStream fos = new FileOutputStream(ficheroDestino);
 
-         //  byte[] bytesLeidos = fis.readAllBytes();
+            //  byte[] bytesLeidos = fis.readAllBytes();
             byte[] bytesLeidos = null;
 
             do {
@@ -81,7 +81,7 @@ public class FileManager {
             fos.close();
 
 
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Logger.getLogger(FileManager.class.getName()).log(Level.SEVERE, null, e);
             return false;
 
@@ -95,6 +95,7 @@ public class FileManager {
 
     /**
      * Copia el fichero de la rutaOrigen a la rutaDestino indicada
+     *
      * @param rutaOrigen
      * @param rutaDestino
      * @ return <String> ruta del fichero copiado
@@ -102,7 +103,7 @@ public class FileManager {
     public String copiaFicheroInfo(String rutaOrigen, String rutaDestino) {
         File f = new File(rutaDestino);
 
-        if(this.copiaFichero(rutaOrigen, rutaDestino)){
+        if (this.copiaFichero(rutaOrigen, rutaDestino)) {
             return f.getAbsolutePath();
 
 
@@ -114,20 +115,20 @@ public class FileManager {
         InputStream in = null;
         OutputStream out = null;
         try {
-             in = new FileInputStream(rutaOrigen);
-             out = new FileOutputStream(rutaDestino);
+            in = new FileInputStream(rutaOrigen);
+            out = new FileOutputStream(rutaDestino);
             byte[] buf = new byte[1024];
 
-            int numBytesLeidos = in.read(buf,40,500);
-            System.out.println("SE HAN LEIDO "+numBytesLeidos+" BYTES DEL FICHERO");
-            System.out.printf("SE HAN LEIDO "+numBytesLeidos+" BYTES DEL FICHERO");
-            out.write(buf,40,numBytesLeidos);
+            int numBytesLeidos = in.read(buf, 40, 500);
+            System.out.println("SE HAN LEIDO " + numBytesLeidos + " BYTES DEL FICHERO");
+            System.out.printf("SE HAN LEIDO " + numBytesLeidos + " BYTES DEL FICHERO");
+            out.write(buf, 40, numBytesLeidos);
 
             // numBytesLeidos = in.readNBytes(buf,541,500);
             //System.out.println("SE HAN LEIDO "+numBytesLeidos+" BYTES DEL FICHERO");
             //out.write(buf);
 
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
 
@@ -135,8 +136,7 @@ public class FileManager {
             e.printStackTrace();
             return false;
 
-        }
-        finally {
+        } finally {
             try {
                 if (in != null) {
                     in.close();
@@ -150,6 +150,23 @@ public class FileManager {
             }
         }
         return true;
+    }
+
+    public static void escribirFicheroRAF(String ruta, String content) {
+        RandomAccessFile raf = null;
+        try {
+            raf = new RandomAccessFile(ruta, "w");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                raf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 }
 
