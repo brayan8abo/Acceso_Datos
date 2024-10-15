@@ -11,8 +11,9 @@ public class CreaProceso {
         try {
 
             String[] parametros = {"cmd", "/c dir"};// nombre del archivo de notas que va aca?
-//            Process process = Runtime.getRuntime().exec("notepad.exe notas.txt");//ejecuta notepadd, y se le pasa el nombre del archivo de notas
+//          Process process = Runtime.getRuntime().exec("notepad.exe notas.txt");//ejecuta notepadd, y se le pasa el nombre del archivo de notas
             Process process = Runtime.getRuntime().exec("cmd /c dir .");
+
 
             // leo la salida del proceso creado y muestro por pantalla
             BufferedReader breader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -20,10 +21,14 @@ public class CreaProceso {
 
             String line;
             do {
-
                 line = breader.readLine();
-                System.out.println(line);
-            } while (!breader.readLine().isEmpty());
+                if (line != null) {
+                    System.out.println(line);
+                }
+
+
+            } while (line != null);
+//            } while (!breader.readLine().isEmpty());
 
 
 //            process.destroy(); // Cierra el proceso hijo
