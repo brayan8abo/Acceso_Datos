@@ -1,4 +1,4 @@
-package Entidades;
+package Acceso_Datos.src.Entidades;
 
 import java.util.ArrayList;
 
