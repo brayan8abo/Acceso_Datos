@@ -1,5 +1,6 @@
-package Acceso_Datos.src.Entidades;
+//package Acceso_Datos.src.Entidades;
 
+package Entidades;
 import java.io.Serializable;
 
 public class Producto implements Serializable {

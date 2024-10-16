@@ -1,4 +1,5 @@
-package Acceso_Datos.src.ClaseAcceso_a_Datos;
+//package Acceso_Datos.src.ClaseAcceso_a_Datos;
+package ClaseAcceso_a_Datos;
 
 import java.io.IOException;
 
