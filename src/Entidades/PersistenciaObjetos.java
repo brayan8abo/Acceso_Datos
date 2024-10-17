@@ -1,6 +1,6 @@
 //package Acceso_Datos.src.Entidades;
 
-package Entidades;
+//package Entidades;
 import java.util.ArrayList;
 
 public class PersistenciaObjetos {
