@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Metodos {
 
 
-    public static Jugador insertarJugador() {
+    public static JugadorDTO insertarJugador() {
         Scanner leer = new Scanner(System.in);
 
         System.out.println("Ingresa el nombre del jugador");
@@ -27,9 +27,12 @@ public class Metodos {
         System.out.println("Ingresa la estatura del jugador");
         double estatura = leer.nextDouble();
         System.out.println("Ingresa el peso del jugador");
-        double peso = leer.nextFloat();
+        float peso = leer.nextFloat();
 
-        Jugador jugador = new Jugador(nombre, apellido, equipo, numeroCamisa, posicion, dni, activo, estatura, peso);
+        JugadorDTO jugador = new JugadorDTO(nombre, apellido, equipo, numeroCamisa, posicion, dni, activo, estatura, peso);
         return jugador;
+    }
+    public static void buscarByNombre(JugadorDTO jugador) {
+
     }
 }

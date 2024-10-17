@@ -1,6 +1,6 @@
 package Actividad1_AccesoDatos;
 
-public class Jugador {
+public class JugadorDTO {
     String nombre;
     String apellido;
     String equipo;
@@ -84,7 +84,7 @@ public class Jugador {
     }
     // Constructor
 
-    public Jugador(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String DNI, boolean activo, double estatura, float peso) {
+    public JugadorDTO(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String DNI, boolean activo, double estatura, float peso) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.equipo = equipo;
@@ -97,22 +97,23 @@ public class Jugador {
     }
 
 
-    public Jugador(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String dni, boolean activo, double estatura, double peso) {
-        this.nombre = "Prueba";
-        this.apellido = "A Prueba";
-        this.equipo = "E Prueba";
-        this.numeroCamisa = 0;
-        this.posicion = "P prueba";
-        this.DNI = "DNI prueba";
-        this.activo = true;
-        this.estatura = 1.95;
-        this.peso = 115;
-    }
+//    public Jugador(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String dni, boolean activo, double estatura, double peso) {
+//        this.nombre = "Prueba";
+//        this.apellido = "A Prueba";
+//        this.equipo = "E Prueba";
+//        this.numeroCamisa = 0;
+//        this.posicion = "P prueba";
+//        this.DNI = "DNI prueba";
+//        this.activo = true;
+//        this.estatura = 1.95;
+//        this.peso = 115;
+//    }
 
     // toString
     @Override
     public String toString() {
-        return "Jugador: " + " nombre: " + nombre + ", apellido: " + apellido + ", equipo: " + equipo + ", numeroCamisa: " + numeroCamisa + ", posicion: " + posicion + ", DNI: " + DNI + ", activo: " + activo + ", estatura: " + estatura + ", peso: " + peso + '}';
+        return "Jugador: " + " nombre: " + getNombre() + ", apellido: " + getApellido() + ", equipo: " + getEquipo() + ", numeroCamisa: " + getNumeroCamisa() + ", posicion: " + getPosicion() + ", DNI: " + getDNI() + ", activo: " + isActivo() + ", estatura: " + getEstatura() + ", peso: " + getPeso() + '}';
     }
+
 
 }

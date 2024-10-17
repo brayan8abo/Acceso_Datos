@@ -18,28 +18,30 @@ public class EquipoBaloncesto {
     public static void menu() {
 
         Scanner leer = new Scanner(System.in);
-        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
-        Jugador jugador ;
+        ArrayList<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();
+        JugadorDTO jugador ;
 
         int opcion = 0;
 
         do {
-            System.out.println("1. Insertar un nuevo jugador.\n2. Mostrar todos los jugadores.\n3. Buscar jugador por nombre.\n4. Eliminar jugador.\5. Salir");
+            System.out.println("1. Insertar un nuevo jugador.\n2. Mostrar todos los jugadores.\n3. Buscar jugador por nombre.\n4. Eliminar jugador.\n5. Salir");
             opcion = leer.nextInt();
             switch (opcion) {
                 case 1:
                     System.out.println("Insertar nuevo jugador");
                     jugador=Metodos.insertarJugador();
                     jugadores.add(jugador);
-                    //el metodo te devuelve un objeto jugador y luego lo añado a la lista vale, te enteras?
-                    // NO!
                     break;
                 case 2:
                     System.out.println("Mostrar todos los jugadores");
+                    for (JugadorDTO players : jugadores) {
+                        System.out.println("Los jugadores que tenemos son:" + players );
+                    }
                     break;
                 case 3:
                     System.out.println("Buscar jugador por nombre");
                     break;
+
                 case 4:
                     System.out.println("Eliminar jugador");
                     break;
