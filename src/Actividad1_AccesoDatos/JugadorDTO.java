@@ -1,15 +1,42 @@
 package Actividad1_AccesoDatos;
 
 public class JugadorDTO {
-    String nombre;
-    String apellido;
-    String equipo;
-    int numeroCamisa;
-    String posicion;
-    String DNI;
-    boolean activo;
-    double estatura;
-    double peso;
+
+    private int idJugador;
+    private String nombre;
+    private String apellidos;
+    private int edad;
+    private int dorsal;
+    private String posicion;
+    private float estatura;
+    private float peso;
+    private boolean activo;
+
+    public JugadorDTO(int idJugador, String nombre, String apellidos, int edad, int dorsal, String posicion, float estatura, float peso, boolean activo) {
+        this.idJugador = idJugador;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.dorsal = dorsal;
+        this.posicion = posicion;
+        this.estatura = estatura;
+        this.peso = peso;
+        this.activo = activo;
+    }
+
+    public JugadorDTO() {
+        this.idJugador = JugadorDAO.generarIDDesdeFichero();
+        this.nombre = "pruebaNombre";
+        this.apellidos = "pruebaApellidos";
+        this.edad = 0;
+        this.dorsal = 0;
+        this.posicion = "pruebaPosicion";
+        this.estatura = 0;
+        this.peso = 0;
+        this.activo = true;
+
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -19,28 +46,28 @@ public class JugadorDTO {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public String getEquipo() {
-        return equipo;
+    public int getEdad() {
+        return edad;
     }
 
-    public void setEquipo(String equipo) {
-        this.equipo = equipo;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
-    public int getNumeroCamisa() {
-        return numeroCamisa;
+    public int getDorsal() {
+        return dorsal;
     }
 
-    public void setNumeroCamisa(int numeroCamisa) {
-        this.numeroCamisa = numeroCamisa;
+    public void setDorsal(int dorsal) {
+        this.dorsal = dorsal;
     }
 
     public String getPosicion() {
@@ -51,12 +78,21 @@ public class JugadorDTO {
         this.posicion = posicion;
     }
 
-    public String getDNI() {
-        return DNI;
+
+    public float getEstatura() {
+        return estatura;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setEstatura(float estatura) {
+        this.estatura = estatura;
+    }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
     }
 
     public boolean isActivo() {
@@ -67,52 +103,23 @@ public class JugadorDTO {
         this.activo = activo;
     }
 
-    public double getEstatura() {
-        return estatura;
+    public int getIdJugador() {
+        return idJugador;
     }
 
-    public void setEstatura(double estatura) {
-        this.estatura = estatura;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-    // Constructor
-
-    public JugadorDTO(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String DNI, boolean activo, double estatura, float peso) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.equipo = equipo;
-        this.numeroCamisa = numeroCamisa;
-        this.posicion = posicion;
-        this.DNI = DNI;
-        this.activo = activo;
-        this.estatura = estatura;
-        this.peso = peso;
-    }
-
-
-//    public Jugador(String nombre, String apellido, String equipo, int numeroCamisa, String posicion, String dni, boolean activo, double estatura, double peso) {
-//        this.nombre = "Prueba";
-//        this.apellido = "A Prueba";
-//        this.equipo = "E Prueba";
-//        this.numeroCamisa = 0;
-//        this.posicion = "P prueba";
-//        this.DNI = "DNI prueba";
-//        this.activo = true;
-//        this.estatura = 1.95;
-//        this.peso = 115;
-//    }
-
-    // toString
     @Override
     public String toString() {
-        return "Jugador: " + " nombre: " + getNombre() + ", apellido: " + getApellido() + ", equipo: " + getEquipo() + ", numeroCamisa: " + getNumeroCamisa() + ", posicion: " + getPosicion() + ", DNI: " + getDNI() + ", activo: " + isActivo() + ", estatura: " + getEstatura() + ", peso: " + getPeso() + '}';
+        return "Jugador{" +
+                "idJugador=" + idJugador +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", edad=" + edad +
+                ", dorsal=" + dorsal +
+                ", posicion='" + posicion + '\'' +
+                ", estatura=" + estatura +
+                ", peso=" + peso +
+                ", activo=" + activo +
+                '}';
     }
 
 

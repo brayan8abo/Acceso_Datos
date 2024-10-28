@@ -1,59 +1,77 @@
 package Actividad1_AccesoDatos;
 
+
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EquipoBaloncesto {
-    /**
-     * Realizar un programa en Java que permita gestionar los datosd e un equipo de baloncesto.
-     * Crea un DAO y el correspondiente DTO. La aplicación contara con un menu para las siguientes opciones:
-     * CRUD (Create, Read, Update, Delete),una opcion para generar un volcado de fichero CSV con los datos de los jugadores, y opcion para salir del programa.
-     */
+
+    // Realizar un programa en java que permita gestionar los datos de un equipo de baloncesto.
+    // Crea un DAO y el DTO correspondiente
+    //La app contará con un menu para seleccionar la funcionalidad entre los casos de uso CRUD,
+    // una opción para generar un volcado a
+    //fichero CSV de los datos de los jugadores, y una opción para salir.
+
     public static void main(String[] args) {
-
         menu();
-
     }
 
     public static void menu() {
 
-        Scanner leer = new Scanner(System.in);
-        ArrayList<JugadorDTO> jugadores = new ArrayList<JugadorDTO>();
-        JugadorDTO jugador ;
 
-        int opcion = 0;
+        JugadorDAO.generarFicheroIDS();
+        JugadorDAO.generarFicheroJugadores();
+        ArrayList<JugadorDTO> arrayJugadores = JugadorDAO.meterJugadoresDesdeFicheroEnArrayList();
+        Scanner sc = new Scanner(System.in);
+
+        int op = -1;
 
         do {
-            System.out.println("1. Insertar un nuevo jugador.\n2. Mostrar todos los jugadores.\n3. Buscar jugador por nombre.\n4. Eliminar jugador.\n5. Salir");
-            opcion = leer.nextInt();
-            switch (opcion) {
-                case 1:
-                    System.out.println("Insertar nuevo jugador");
-                    jugador=Metodos.insertarJugador();
-                    jugadores.add(jugador);
-                    break;
-                case 2:
-                    System.out.println("Mostrar todos los jugadores");
-                    for (JugadorDTO players : jugadores) {
-                        System.out.println("Los jugadores que tenemos son:" + players );
-                    }
-                    break;
-                case 3:
-                    System.out.println("Buscar jugador por nombre");
-                    break;
 
-                case 4:
-                    System.out.println("Eliminar jugador");
-                    break;
-                case 5:
-                    System.out.println("Saliendo...");
-                    break;
-                default:
-                    System.out.println("Opcion invalida");
-                    break;
+
+            System.out.println("1. Dar de alta jugador\n2. Mostrar todos los jugadores\n3. Insertar jugadores desde fichero.\n4. Salir");
+            System.out.println("Ingrese  opción deseada1: ");
+
+            try {
+                op = sc.nextInt();
+
+
+                switch (op) {
+                    case 1:
+                        System.out.println("Insertar nuevo jugador");
+                        JugadorDAO.crearJugador();
+                        break;
+                    case 2:
+                        System.out.println("Mostrar todos los jugadores");
+                        JugadorDAO.leerJugadoresFichero();
+                        break;
+                    case 3:
+                        System.out.println("Buscar jugador por nombre");
+                        arrayJugadores = JugadorDAO.meterJugadoresDesdeFicheroEnArrayList();
+                        break;
+                    case 4:
+                        System.out.println("Eliminar jugador");
+                        break;
+                    case 0:
+                        System.out.println("Saliendo...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida");
+
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("opcion invalida");
+                op = -1;
+            } finally {
+                sc.nextLine();
+
 
             }
-            leer.nextLine(); // Limpia el buffer de entrada para que el scanner no siga leyendo caracteres en la próxima iteración del bucle.
-        } while (opcion != 5);
+
+
+        } while (op != 0);
+
     }
 }
