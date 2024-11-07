@@ -19,8 +19,7 @@ public class HiloPadre {
     }
 
     private void start() {
-        chupa vergas 2000 no entiendo una polla negra y gorda
-                yo nose que hacer
+
                 // Creo los hilos
         Hilo[] hijos = new Hilo[NUM_HILOS];
         for (int i = 0; i < NUM_HILOS; i++) {
