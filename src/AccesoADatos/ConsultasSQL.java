@@ -1,15 +1,10 @@
-package AccesoADatos;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package conectores;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +12,7 @@ import java.util.logging.Logger;
 /**
  * @author ALUMNO CCC - TARDE
  */
-/*public class club_socios {
+public class ConsultasSQL {
 
     private Connection conn = null;
     private int puerto = 3306;
@@ -25,7 +20,7 @@ import java.util.logging.Logger;
     private String password = "";
     private String bD = "/club_socios";
 
-    /*public ConsultasSQL() {
+    public ConsultasSQL() {
 
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:" + puerto + bD, user, password);
@@ -35,7 +30,7 @@ import java.util.logging.Logger;
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClubSociosApp.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -178,32 +173,29 @@ import java.util.logging.Logger;
             }
 
         }
-
-    }
-
-    public void verSocios() {
-
-        if (this.conn != null) {
-
+        /*public void muestrasocioByid ( int socio_id){
             try {
 
 
-                String query = "SELECT id_socio,nombre,apellidos,dni FROM socios; ";
-                PreparedStatement preparedStatement = conn.prepareStatement(query);
+                if (conn != null) {
 
+                    String query = "Select * from socios where id_socio = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(query);
+                    preparedStatement.setInt(1, socio_id);
 
-                System.out.println("CONSULTA ====> " + preparedStatement.toString());
-                ResultSet rs = preparedStatement.executeQuery();
-                while (rs.next()) {
-                    System.out.println("ID : " + rs.getObject("id_socio") + ", Nombre= " + rs.getObject("nombre") + ", Apellidos : " + rs.getObject("apellidos") + ", DNI: " + rs.getObject("dni"));
+                    System.out.println("CONSULTA ==> " + preparedStatement.toString());
+                    ResultSet rs = preparedStatement.executeQuery();
+                    while (rs.next()) {
+                        System.out.println("Nombre = " + rs.getObject("nombre") + "Apellidos = "
+                                + rs.getObject("apellidos")
+                                + " DNI = " + rs.getObject("dni"));
+                    }
+                    rs.close();
+                    preparedStatement.close();
                 }
-                rs.close();
-                preparedStatement.close();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
 
     }
@@ -218,7 +210,6 @@ import java.util.logging.Logger;
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }
 }
-*/
