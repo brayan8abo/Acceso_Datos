@@ -9,4 +9,10 @@ public class Hilo implements Runnable {
         System.out.println("Soy el hilo: " + Thread.currentThread().getId());
 
     }
+
+    public boolean isFinished() {
+        Random random = new Random();
+        return random.nextBoolean();
+        // Devuelve un valor aleatorio (true o false) para simular que el hilo ha terminado
+    }
 }
