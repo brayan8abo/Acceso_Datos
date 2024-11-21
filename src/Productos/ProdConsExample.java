@@ -1,4 +1,4 @@
-package Productos;
+/*package Productos;
 
 import javax.swing.*;
 
@@ -29,4 +29,4 @@ public class ProdConsExample {
         }
         System.out.println("");
     }
-}
+}*/

@@ -30,9 +30,9 @@ public class EquipoBaloncesto {
 
         do {
 
-
+//posiciones base, escolta,alero,ala-pivot,pivot
             System.out.println("1. Dar de alta jugador\n2. Mostrar todos los jugadores\n3. Insertar jugadores desde fichero.\n4. Salir");
-            System.out.println("Ingrese  opción deseada1: ");
+            System.out.println("Ingrese  opción deseada: ");
 
             try {
                 op = sc.nextInt();

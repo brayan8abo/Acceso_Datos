@@ -43,12 +43,11 @@ public class JugadorDAO {
         peso = leer.nextFloat();
         leer.nextLine();
         System.out.println("Introduce si el jugador esta activo: [TRUE / FALSE]");
-        activo = leer .nextBoolean();
+        activo = leer.nextBoolean();
         leer.nextLine();
         int id = JugadorDAO.generarIDDesdeFichero();
 
         jugador = new JugadorDTO(id, nombre, apellidos, edad, dorsal, posicion, estatura, peso, activo);
-
 
 
         if (JugadorDAO.insertarJugadorFichero(jugador)) {
@@ -114,21 +113,21 @@ public class JugadorDAO {
 
         String jugadorString = String.valueOf(jugador.getIdJugador());
 
-        jugadorString += "*" + jugador.getNombre();
+        jugadorString += " " + jugador.getNombre();
 
-        jugadorString += "*" + jugador.getApellidos();
+        jugadorString += " " + jugador.getApellidos();
 
-        jugadorString += "*" + jugador.getEdad();
+        jugadorString += " " + jugador.getEdad();
 
-        jugadorString += "*" + jugador.getDorsal();
+        jugadorString += " " + jugador.getDorsal();
 
-        jugadorString += "*" + jugador.getPosicion();
+        jugadorString += " " + jugador.getPosicion();
 
-        jugadorString += "*" + jugador.getEstatura();
+        jugadorString += " " + jugador.getEstatura();
 
-        jugadorString += "*" + jugador.getPeso();
+        jugadorString += " " + jugador.getPeso();
 
-        jugadorString += "*" + jugador.isActivo();
+        jugadorString += " 101010" + jugador.isActivo();
 
         return jugadorString;
 
@@ -181,8 +180,8 @@ public class JugadorDAO {
                 if (fr != null) {
                     fr.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return 0;
@@ -207,8 +206,8 @@ public class JugadorDAO {
                 if (fr != null) {
                     fr.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -241,8 +240,8 @@ public class JugadorDAO {
                 if (fr != null) {
                     fr.close();
                 }
-            } catch (Exception e2) {
-                e2.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

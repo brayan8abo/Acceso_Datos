@@ -4,46 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import static Actividad1_AccesoDatos.EquipoBaloncesto.menu;
 
 public class GestionarUsers {
+    public static void main(String[] args) {
 
-    private Connection conexion;
+        ArrayList<User> usuarios = new ArrayList<>();
 
-    public GestionarUsers(Connection conexion) {
-        this.conexion = conexion;
+        usuarios.add(new User("Brayan", "12345", "Admin"));
+        usuarios.add(new User("Maria", "password", "User"));
+        menuPrincipal(usuarios);
     }
 
-    public boolean validateUser(String id_user, String password) throws Exception {
-        String hashPassword = User.generarPasswordMD5(password);
-        String query = "SELECT * from users where id_user = ?";
-
-        try (PreparedStatement ps = conexion.prepareStatement(query)) {
-            ps.setString(1, id_user);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                if (!rs.getBoolean("active")) {
-                    System.out.println("Usuario inactivo");
-                    return false;
-                }
-                if (rs.getString("password").equals(hashPassword)) {
-                    System.out.println("Correcto, iniciando sesión");
-                    registrarHoraYFechaCorrecto(id_user);
-                    mostrarMenu(rs.getString("type_user"));
-                    return true;
-                } else {
-                    System.out.println("Contraseña incorrecta ");
-                }
-            }
-            return false;
-        }
-
-
-        private void registrarHoraYFechaCorrecto (String id_user) throws SQLException {
-            String updateSQL = "Update usuario set hora_fecha_ultimo_acceso_correcto = NOW() WHERE id_user =?";
-
-        }
-
-
+    public static void menuPrincipal(ArrayList<User> usuarios) {
+        User user = new User();
+        user.identificacion(usuarios);
     }
 }

@@ -1,4 +1,4 @@
-package Productos;
+/*package Productos;
 
 import java.util.Random;
 
@@ -53,3 +53,4 @@ public class HiloProd extends Thread {
         }
     }
 }
+*/
