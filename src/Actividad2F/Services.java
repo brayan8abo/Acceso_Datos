@@ -1,10 +1,11 @@
 package Actividad2F;
 
 import java.security.MessageDigest;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class servicios {
+public class Services {
 
 	static ArrayList<User> users = new ArrayList<User>();
 
@@ -19,7 +20,7 @@ public class servicios {
 				return false;
 			}
 
-			//codigo proporcionado por profesor para gestionar el HASH, hacemos uso de el para hacer la correcta validacion de la password y convertirla
+			//codigo proporcionado por profesor para gestionar el HASH, hacemos uso de el para hacer la correcta validación de la password y convertirla
 			byte[] bytesOfMessage = password.getBytes("UTF-8");
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			byte[] theMD5Digest = md.digest(bytesOfMessage);
@@ -61,11 +62,21 @@ public class servicios {
 			System.out.println("Hash de la contraseña almacenada: " + user.getPassword());*/
 			////
 
+			
+			
 
 			if (user.getPassword().equals(strMD5digest)) {
 				user.setUltAccesoCorrecto(LocalDate.now());
 				user.setUltAccesoIncorrecto(null);
-				System.out.println("\nBienvenido," + id_user + "[" + user.getType_user() + "]");
+				System.out.println("\tBienvenido, " + id_user + " [" + user.getType_user() + "]\n");
+
+				ConsultasSQL sql = new ConsultasSQL();
+				Connection conn = null;
+				sql.connectDataBase(conn);
+				sql.insertUser(user); // Llamada al nuevo método de inserción
+				
+				
+				
 				return true;
 			} else {
 				user.setUltAccesoIncorrecto(LocalDate.now());

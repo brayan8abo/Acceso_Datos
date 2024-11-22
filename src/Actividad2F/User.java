@@ -34,6 +34,9 @@ public class User {
 
 	}
 
+	public User(String userInput, String passInput) {
+	}
+
 	public int getId() {
 		return id;
 	}

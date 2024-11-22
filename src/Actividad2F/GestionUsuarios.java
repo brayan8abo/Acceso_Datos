@@ -12,6 +12,7 @@ public class GestionUsuarios {
 
 
 
+
 	}
 
 	public static void menuPrincipal() {
@@ -38,7 +39,7 @@ public class GestionUsuarios {
 					System.out.println("¿Qué tipo de usuario eres? [Admin/usuario_consulta]");
 					String type_user = leer.nextLine();
 
-					if (servicios.registrarUser(id_user, password, type_user)) {
+					if (Services.registrarUser(id_user, password, type_user)) {
 						System.out.println("Usuario registrado con exito\n");
 					} else {
 						System.err.println("[ERROR]: No se pudo registrar el usuario");
@@ -52,7 +53,7 @@ public class GestionUsuarios {
 					System.out.println("Ingresa tu contraseña");
 					String loginPassword = leer.nextLine();
 
-					if (servicios.loginUser(loginUser, loginPassword)) {
+					if (Services.loginUser(loginUser, loginPassword)) {
 						System.out.println("INICIANDO SESIÓN...");
 					} else {
 						System.err.println("[ERROR]: No se pudo iniciar sesión");
