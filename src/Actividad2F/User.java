@@ -16,12 +16,18 @@ public class User {
 		this.id_user = id_user;
 		this.password = password;
 		this.type_user = type_user;
-		this.ultAccesoCorrecto = LocalDate.now();
-		this.ultAccesoIncorrecto = LocalDate.now();
+		this.ultAccesoCorrecto = null;
+		this.ultAccesoIncorrecto = null;
 		this.isActive = isActive;
 	}
 
-	public User(String idUser, String passwordMD5, String typeUser, boolean b) {
+	public User(String id_user, String password, String type_user, boolean isActive) {
+		this.id_user = id_user;
+		this.password = password;
+		this.type_user = type_user;
+		this.isActive = isActive;
+		this.ultAccesoCorrecto = null;
+		this.ultAccesoIncorrecto = null;
 	}
 
 	public User() {

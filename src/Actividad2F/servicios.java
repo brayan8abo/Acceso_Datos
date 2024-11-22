@@ -1,5 +1,6 @@
 package Actividad2F;
 
+import java.security.MessageDigest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -17,7 +18,13 @@ public class servicios {
 				System.err.println("[ERROR]: Tipo de usuario no válido");
 				return false;
 			}
-			String passwordMD5 = HexTransform.bytesToHex(password.getBytes());
+
+			//codigo proporcionado por profesor para gestionar el HASH, hacemos uso de el para hacer la correcta validacion de la password y convertirla
+			byte[] bytesOfMessage = password.getBytes("UTF-8");
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] theMD5Digest = md.digest(bytesOfMessage);
+			String passwordMD5 = HexTransform.bytesToHex(theMD5Digest);
+
 			users.add(new User(id_user, passwordMD5, type_user, true));
 			return true;
 		} catch (Exception e) {
@@ -28,23 +35,37 @@ public class servicios {
 
 	public static boolean loginUser(String id_user, String password) {
 		try {
-			User user = id_user == null ? null : null;
+			User user = null;
 			for (User listUser : users) {
 				if (listUser.getId_user().equals(id_user)) {
 					user = listUser;
 					break;
 				}
-
 			}
 			if (user == null || !user.isActive()) {
 				System.err.println("[ERROR]: El usuario no existe o está inactivo");
 				return false;
 			}
-			String passwordMD5 = HexTransform.bytesToHex(password.getBytes());
-			if (user.getPassword().equals(passwordMD5)) {
+
+
+			password = password.trim(); // Eliminar espacios adicionales, para evitar fallos
+			//codigo proporcionado por profesor para gestionar el HASH, hacemos uso de el para hacer la correcta validacion de la password y convertirla
+			byte[] bytesOfMessage = password.getBytes("UTF-8");
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] theMD5digest = md.digest(bytesOfMessage);
+			String strMD5digest = HexTransform.bytesToHex(theMD5digest); // Convertir a hex
+
+			/*TODO:hacemos pruebas de que las contraseñas almacenadas y pasadas sean iguales*/
+			////
+			/*System.out.println("Hash de la contraseña ingresada: " + strMD5digest);
+			System.out.println("Hash de la contraseña almacenada: " + user.getPassword());*/
+			////
+
+
+			if (user.getPassword().equals(strMD5digest)) {
 				user.setUltAccesoCorrecto(LocalDate.now());
 				user.setUltAccesoIncorrecto(null);
-				System.out.println("Bienvenido," + id_user + "[" + user.getType_user() + "]");
+				System.out.println("\nBienvenido," + id_user + "[" + user.getType_user() + "]");
 				return true;
 			} else {
 				user.setUltAccesoIncorrecto(LocalDate.now());
@@ -57,4 +78,3 @@ public class servicios {
 		}
 	}
 }
-

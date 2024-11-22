@@ -10,6 +10,8 @@ public class GestionUsuarios {
 	public static void main(String[] args) {
 		menuPrincipal();
 
+
+
 	}
 
 	public static void menuPrincipal() {
@@ -37,7 +39,7 @@ public class GestionUsuarios {
 					String type_user = leer.nextLine();
 
 					if (servicios.registrarUser(id_user, password, type_user)) {
-						System.out.println("Usuario registrado con exito");
+						System.out.println("Usuario registrado con exito\n");
 					} else {
 						System.err.println("[ERROR]: No se pudo registrar el usuario");
 					}
