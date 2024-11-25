@@ -58,8 +58,8 @@ public class Services {
 
 			/*TODO:hacemos pruebas de que las contraseñas almacenadas y pasadas sean iguales*/
 			////
-			/*System.out.println("Hash de la contraseña ingresada: " + strMD5digest);
-			System.out.println("Hash de la contraseña almacenada: " + user.getPassword());*/
+			System.out.println("Hash de la contraseña ingresada: " + strMD5digest);
+			System.out.println("Hash de la contraseña almacenada: " + user.getPassword());
 			////
 
 			

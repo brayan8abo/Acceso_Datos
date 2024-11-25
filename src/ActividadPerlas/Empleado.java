@@ -1,6 +1,6 @@
 package ActividadPerlas;
 
-public class Empleado implements Runnable {
+public class Empleado extends Thread {
 	private final Cesto cestoBlanco;
 	private final Cesto cestoAzul;
 	private final Collar collar;
@@ -14,7 +14,7 @@ public class Empleado implements Runnable {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < 10; i++) { // 10 perlas de cada color para un collar mixto
+			for (int i = 0; i < 10; i++) { // 10 pares de perlas para un collar mixto
 				collar.insertarPerla(cestoBlanco.cogerPerla("Blanco").getColor());
 				collar.insertarPerla(cestoAzul.cogerPerla("Azul").getColor());
 			}
@@ -23,11 +23,5 @@ public class Empleado implements Runnable {
 			System.err.println(e.getMessage());
 		}
 	}
-
-	public void start() {
-	}
-
-	public boolean isAlive() {
-		return false;
-	}
 }
+

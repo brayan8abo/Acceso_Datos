@@ -12,8 +12,9 @@ public class Collar {
 		System.out.println("Se insertó una perla de color " + color + " en el collar. Total: " + perlasInsertadas);
 	}
 
-	public boolean estaCompleto() {
+	public synchronized boolean estaCompleto() {
 		return perlasInsertadas == capacidad;
 	}
 }
+
 
