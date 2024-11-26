@@ -1,27 +1,36 @@
 package ActividadPerlas;
 
+import java.util.ArrayList;
+
+
 public class Empleado extends Thread {
-	private final Cesto cestoBlanco;
-	private final Cesto cestoAzul;
-	private final Collar collar;
+    private final Cesto cesto;
+    private final ArrayList<Collar> collaresListos;
 
-	public Empleado(Cesto cestoBlanco, Cesto cestoAzul, Collar collar) {
-		this.cestoBlanco = cestoBlanco;
-		this.cestoAzul = cestoAzul;
-		this.collar = collar;
-	}
+    public Empleado(Cesto cesto, ArrayList<Collar> collaresFabricados) {
+        this.cesto = cesto;
+        this.collaresListos = collaresFabricados;
+    }
 
-	@Override
-	public void run() {
-		try {
-			for (int i = 0; i < 10; i++) { // 10 pares de perlas para un collar mixto
-				collar.insertarPerla(cestoBlanco.cogerPerla("Blanco").getColor());
-				collar.insertarPerla(cestoAzul.cogerPerla("Azul").getColor());
-			}
-			System.out.println("Collar completo ensamblado por " + Thread.currentThread().getName());
-		} catch (NoMaterialsLeft e) {
-			System.err.println(e.getMessage());
-		}
-	}
+    @Override
+    public void run() {
+        try {
+            while (true) {
+                Collar collar = new Collar();
+                for (int i = 0; i < Collar.MAX_PERLAS; i++) {
+                    String color = (i % 2 == 0) ? "blanco" : "azul";
+                    Perla perla = cesto.recuperarPerla(color);
+                    collar.ponerPerla(perla);
+                }
+                synchronized (collaresListos) {
+                    collaresListos.add(collar);
+                }
+            }
+        } catch (NoMaterialsLeft e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 

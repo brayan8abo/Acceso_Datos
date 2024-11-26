@@ -1,25 +1,33 @@
 package ActividadPerlas;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Cesto {
-	private int perlas; // Reemplaza AtomicInteger por int
+    private int perlasBlancas;
+    private int perlasAzules;
 
-	public Cesto(int cantidadInicial) {
-		this.perlas = cantidadInicial;
-	}
+    public static final int MAX_BLUE = 210;
+    public static final int MAX_WHT = 180;
 
-	public synchronized Perla cogerPerla(String color) throws NoMaterialsLeft {
-		if (!isMaterialsLeft()) {
-			throw new NoMaterialsLeft("Se acabaron las perlas de color " + color);
-		}
-		perlas--; // Decrementar el contador de forma segura
-		return new Perla(color);
-	}
+    public Cesto(int perlasBlancas, int perlasAzules) {
+        this.perlasBlancas = perlasBlancas;
+        this.perlasAzules = perlasAzules;
+    }
 
-	public synchronized boolean isMaterialsLeft() {
-		return perlas > 0; // Comprobar si quedan perlas
-	}
+    public synchronized Perla recuperarPerla(String color) throws NoMaterialsLeft {
+        if (color.equals("blanco") && perlasBlancas > 0) {
+            perlasBlancas--;
+            return new Perla("blanco");
+        } else if (color.equals("azul") && perlasAzules > 0) {
+            perlasAzules--;
+            return new Perla("azul");
+        } else {
+            throw new NoMaterialsLeft("Ya no quedan más perlas de: " + color);
+        }
+    }
+
+    public synchronized boolean isMaterialsLeft() {
+        return perlasBlancas > 0 || perlasAzules > 0;
+    }
 }
+
 
 

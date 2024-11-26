@@ -1,20 +1,21 @@
 package ActividadPerlas;
 
-public class Collar {
-	private final int capacidad = 20;
-	private int perlasInsertadas = 0;
+import java.util.ArrayList;
+import java.util.List;
 
-	public synchronized void insertarPerla(String color) throws NoMaterialsLeft {
-		if (perlasInsertadas >= capacidad) {
-			throw new NoMaterialsLeft("No se pueden añadir más perlas al collar, ya está completo.");
+public class Collar {
+	private final ArrayList<Perla> perlas = new ArrayList<>();
+	public static final int MAX_PERLAS = 20;
+
+	public synchronized void ponerPerla(Perla perla) throws Exception {
+		if (perlas.size() < MAX_PERLAS) {
+			perlas.add(perla);
+		} else {
+			throw new Exception("El collar ya está completo");
 		}
-		perlasInsertadas++;
-		System.out.println("Se insertó una perla de color " + color + " en el collar. Total: " + perlasInsertadas);
 	}
 
-	public synchronized boolean estaCompleto() {
-		return perlasInsertadas == capacidad;
+	public boolean isCompleto() {
+		return perlas.size() == MAX_PERLAS;
 	}
 }
-
-

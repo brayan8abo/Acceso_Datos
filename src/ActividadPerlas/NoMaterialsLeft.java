@@ -1,8 +1,7 @@
 package ActividadPerlas;
 
-
-	class NoMaterialsLeft extends Exception {
-		public NoMaterialsLeft(String mensaje) {
-			super(mensaje);
-		}
+public class NoMaterialsLeft extends Exception {
+	public NoMaterialsLeft(String message) {
+		super(message);
 	}
+}
