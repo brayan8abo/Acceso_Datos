@@ -1,12 +1,8 @@
 package ActividadPerlas;
 
 public class Joyeria {
-//	private static final int MAX_BLUE = 210;
-//	private static final int MAX_WHT = 180;
-
-	private static final int MAX_BLUE = 40;
-	private static final int MAX_WHT = 30;
-
+	private static final int MAX_BLUE = 210;
+	private static final int MAX_WHT = 180;
 
 		public static void main(String[] args) {
 			// Inicializar los cestos
@@ -26,18 +22,16 @@ public class Joyeria {
 				empleados[i].start(); // Inicia el hilo del empleado
 			}
 
-			// esperar a que todos los hilos terminen
+			// Esperar a que todos los hilos terminen
 			for (Empleado empleado : empleados) {
 				try {
-					// espera a que el hilo termine
-					empleado.join();
-
+					empleado.join(); // Bloquea hasta que el hilo termine
 				} catch (InterruptedException e) {
 					System.err.println("Hilo interrumpido: " + e.getMessage());
 				}
 			}
 
-			// contador para tener una cuenta de collares terminados
+			// Contar collares completos
 			int collaresCompletos = 0;
 			for (Collar collar : collares) {
 				if (collar.estaCompleto()) {
@@ -45,8 +39,8 @@ public class Joyeria {
 				}
 			}
 
-			// imprimir resultados de los collares ya terminados
-			System.out.println("Número de collares fabricados: " + collaresCompletos);
+			// Imprimir resultados
+			System.out.println("Número total de collares completos fabricados: " + collaresCompletos);
 		}
 	}
 

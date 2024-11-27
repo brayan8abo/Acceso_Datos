@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Scanner;
 
 public class ConsultasSQL {
@@ -13,9 +14,11 @@ public class ConsultasSQL {
 	private String password = "";
 	private String dataBase = "/gestion_usuarios";
 
-	public void connectDataBase(Connection conn) {
+	public Connection connectDataBase() {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:" + port + password + dataBase);
+			String connParams = "jdbc:mysql://localhost:" + port + dataBase;
+			System.out.println("CADENA DE CONNEXIÓN ===> " + connParams);
+			conn = DriverManager.getConnection(connParams, user, password);
 
 			if (conn != null) {
 				System.out.println("CONEXION ESTABLECIDA CON LA BASE DE DATOS");
@@ -23,10 +26,12 @@ public class ConsultasSQL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		return conn;
 	}
 
 	public void insertUser(User user) {
-		Scanner leer = new Scanner(System.in);
+		/*Scanner leer = new Scanner(System.in);
 		System.out.println("Bienvenido, vamos a crear un usuario nuevo\n");
 		System.out.println("Ingresa el nombre de usuario");
 		String userInput = leer.nextLine();
@@ -34,25 +39,21 @@ public class ConsultasSQL {
 		String passInput = leer.nextLine();
 
 		User insertUser = new User(userInput, passInput);
-		Services.users.add(insertUser);
+		Services.users.add(insertUser);*/
 		try {
-			PreparedStatement ps = conn.prepareStatement("insert into usuarios (id_user,password,type_user,isActive,ultAccesoCorrecto,ultAccesoIncorrecto)values (?,?,?,?,?,?)");
-			ps.setString(1, insertUser.getId_user());
-			ps.setString(2, insertUser.getPassword());
-			ps.setString(3, insertUser.getType_user());
-			ps.setBoolean(4, insertUser.isActive());
-			ps.setObject(5, null);
-			ps.setObject(6, null);
+			PreparedStatement ps = conn.prepareStatement("insert into usuarios (id_user, password, type_user, active, hora_fecha_ultimo_acceso_correcto, hora_fecha_ultimo_erroneo) values (?,?,?,?,NOW(),?)");
+			ps.setString(1, user.getId_user());
+			ps.setString(2, user.getPassword());
+			ps.setString(3, user.getType_user());
+			ps.setBoolean(4, user.isActive());
+			//ps.setString(5, ""+new Date().getTime());
+			ps.setString(5, null);
 			ps.executeUpdate();
-			leer.close();
 			ps.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-
-
 	}
-
 }
 
 

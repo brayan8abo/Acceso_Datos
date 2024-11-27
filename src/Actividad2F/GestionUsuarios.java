@@ -11,8 +11,6 @@ public class GestionUsuarios {
 		menuPrincipal();
 
 
-
-
 	}
 
 	public static void menuPrincipal() {
@@ -28,7 +26,12 @@ public class GestionUsuarios {
 			opcion = leer.nextInt();
 			leer.nextLine(); //limpiamos el buffer
 
+			// Connexión a la DB
+			ConsultasSQL sql = new ConsultasSQL();
+			sql.connectDataBase();
+
 			switch (opcion) {
+				// REGISTRO DEL USUARIO EN EL SISTEMA
 				case 1:
 					System.out.println("Ingresa tu ID de usuario");
 					String id_user = leer.nextLine();
@@ -39,13 +42,17 @@ public class GestionUsuarios {
 					System.out.println("¿Qué tipo de usuario eres? [Admin/usuario_consulta]");
 					String type_user = leer.nextLine();
 
-					if (Services.registrarUser(id_user, password, type_user)) {
+					User user = Services.registrarUser(id_user, password, type_user);
+					if (user != null) {
+						// Se da de alta el user en la db
+						sql.insertUser(user);
 						System.out.println("Usuario registrado con exito\n");
 					} else {
 						System.err.println("[ERROR]: No se pudo registrar el usuario");
 					}
 					break;
 
+				// LOGIN DEL USUARIO
 				case 2:
 					System.out.println("Ingresa tu ID de usuario");
 					String loginUser = leer.nextLine();
