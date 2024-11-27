@@ -1,0 +1,18 @@
+package Actividad2F;
+
+public class Users {
+
+	private ArrayList<User> users = new ArrayList<User>();
+
+	public boolean registrarUser(String id_user, String password, String type_user) {
+		if (id_user.length() < 5 || password.length() < 5) {
+			System.err.println("[ERROR]: La contraseña y/o el usuario deben superar los 5 caracteres");
+			return false;
+		}
+		if (!type_user.equalsIgnoreCase("admin") && !type_user.equalsIgnoreCase("usuario_consulta")) {
+			System.err.println("[ERROR]: Tipo de usuario no válido");
+			return false;
+		}
+		String passwordMD5 = HexTransform
+	}
+}
