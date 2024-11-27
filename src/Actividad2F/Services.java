@@ -9,15 +9,15 @@ public class Services {
 
     static ArrayList<User> users = new ArrayList<User>();
 
-    public static boolean registrarUser(String id_user, String password, String type_user) {
+    public static User registrarUser(String id_user, String password, String type_user) {
         try {
             if (id_user.length() < 5 || password.length() < 5) {
                 System.err.println("[ERROR]: La contraseña y/o el usuario deben superar los 5 caracteres");
-                return false;
+                return null;
             }
             if (!type_user.equalsIgnoreCase("admin") && !type_user.equalsIgnoreCase("usuario_consulta")) {
                 System.err.println("[ERROR]: Tipo de usuario no válido");
-                return false;
+                return null;
             }
 
             //codigo proporcionado por profesor para gestionar el HASH, hacemos uso de el para hacer la correcta validación de la password y convertirla
@@ -26,11 +26,13 @@ public class Services {
             byte[] theMD5Digest = md.digest(bytesOfMessage);
             String passwordMD5 = HexTransform.bytesToHex(theMD5Digest);
 
-            users.add(new User(id_user, passwordMD5, type_user, true));
-            return true;
+            User u = new User(id_user, passwordMD5, type_user, true);
+            users.add(u);
+            System.out.println("ESTOY AL FINAL DE SERVICES.REGISTRARUSER");
+            return u;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
@@ -68,11 +70,11 @@ public class Services {
                 user.setUltAccesoIncorrecto(null);
                 System.out.println("\tBienvenido, " + id_user + " [" + user.getType_user() + "]\n");
 
-//				ConsultasSQL sql = new ConsultasSQL();
-//				Connection conn = null;
-//				sql.connectDataBase(conn);
-//				sql.insertUser(user); // Llamada al nuevo método de inserción
-
+				ConsultasSQL sql = new ConsultasSQL();
+                // Establezco la connexión con DB
+				sql.connectDataBase();
+                // Registro el último acceso correcto/incorrecto del usuario al system con su timestamp
+				//sql.insertUser(user); // Llamada al nuevo método de inserción
 
                 return true;
             } else {
