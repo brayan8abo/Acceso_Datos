@@ -1,6 +1,4 @@
-package ActividadPerlas;
-
-import java.util.concurrent.atomic.AtomicInteger;
+package ActividadJoyeria;
 
 public class Cesto {
 	private int perlas;

@@ -1,9 +1,10 @@
-package ActividadPerlas;
+package ActividadJoyeria;
 
 public class Empleado extends Thread {
-	private final Cesto cestoBlanco;
-	private final Cesto cestoAzul;
-	private final Collar collar;
+
+	private  Cesto cestoBlanco;
+	private  Cesto cestoAzul;
+	private  Collar collar;
 
 	public Empleado(Cesto cestoBlanco, Cesto cestoAzul, Collar collar) {
 		this.cestoBlanco = cestoBlanco;
@@ -15,7 +16,7 @@ public class Empleado extends Thread {
 	public void run() {
 		try {
 			//bucle para recorrer el las perlas que usa un collar mixto de perlas (azul y blancas)
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 20; i++) {
 				collar.insertarPerla(cestoBlanco.cogerPerla("Blanco").getColor());
 				collar.insertarPerla(cestoAzul.cogerPerla("Azul").getColor());
 			}

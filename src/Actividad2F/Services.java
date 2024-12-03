@@ -1,7 +1,6 @@
 package Actividad2F;
 
 import java.security.MessageDigest;
-import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,7 +8,7 @@ public class Services {
 
     static ArrayList<User> users = new ArrayList<User>();
 
-    public static User registrarUser(String id_user, String password, String type_user) {
+    public static Actividad2F.User registrarUser(String id_user, String password, String type_user) {
         try {
             if (id_user.length() < 5 || password.length() < 5) {
                 System.err.println("[ERROR]: La contraseña y/o el usuario deben superar los 5 caracteres");

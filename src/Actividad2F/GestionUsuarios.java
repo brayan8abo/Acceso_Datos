@@ -41,7 +41,6 @@ public class GestionUsuarios {
 
 					System.out.println("¿Qué tipo de usuario eres? [Admin/usuario_consulta]");
 					String type_user = leer.nextLine();
-
 					User user = Services.registrarUser(id_user, password, type_user);
 					if (user != null) {
 						// Se da de alta el user en la db

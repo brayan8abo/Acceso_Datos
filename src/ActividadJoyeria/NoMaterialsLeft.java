@@ -1,4 +1,4 @@
-package ActividadPerlas;
+package ActividadJoyeria;
 
 // excepcion que recibe como mensaje el que se le esta dando en el throws
 	class NoMaterialsLeft extends Exception {
